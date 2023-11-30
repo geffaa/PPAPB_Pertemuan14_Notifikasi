@@ -26,14 +26,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnNotif.setOnClickListener{
 
-            val intent = Intent(this, MainActivity::class.java)
+
             val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 PendingIntent.FLAG_MUTABLE
             } else {
                 0
             }
 
-            val pendingIntent = PendingIntent.getActivity(this, 0, intent, flag)
+            val intent = Intent(this, NotifReceiver::class.java).putExtra("MESSAGE", "Baca Selengkapnya")
+            val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, flag)
 
             val builder = NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.baseline_notifications_24)
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 .setContentText("hello world!")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
+                .addAction(0, "Baca Notif", pendingIntent)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val notifChannel = NotificationChannel(channelId, "Notifku", NotificationManager.IMPORTANCE_DEFAULT)
