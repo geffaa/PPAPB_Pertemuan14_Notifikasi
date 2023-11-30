@@ -18,4 +18,15 @@
         android:text="Kirim Notifikasi">
     </Button>
 
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_notif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp"
+        android:text="Update Notifikasi">
+    </Button>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
